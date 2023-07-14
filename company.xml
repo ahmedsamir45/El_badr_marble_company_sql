@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 5.2.0
+- https://www.phpmyadmin.net
+-
+- Host: 127.0.0.1
+- Generation Time: Feb 06, 2023 at 10:55 PM
+- Server version: 10.4.25-MariaDB
+- PHP Version: 8.0.23
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="company" collation="utf8mb4_general_ci" charset="utf8mb4">
+            <pma:table name="clients">
+                CREATE TABLE `clients` (
+                  `c_id` int(11) NOT NULL,
+                  `c_name` varchar(255) DEFAULT NULL,
+                  `email` varchar(255) DEFAULT NULL,
+                  PRIMARY KEY (`c_id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+            <pma:table name="employee">
+                CREATE TABLE `employee` (
+                  `emp_id` int(11) NOT NULL,
+                  `emp_name` varchar(255) DEFAULT NULL,
+                  `salary` varchar(255) DEFAULT NULL,
+                  `address` varchar(255) DEFAULT NULL,
+                  `email` varchar(255) DEFAULT NULL,
+                  `job` varchar(255) DEFAULT NULL,
+                  PRIMARY KEY (`emp_id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+            <pma:table name="finish">
+                CREATE TABLE `finish` (
+                  `f_id` int(11) NOT NULL,
+                  `f_name` varchar(255) DEFAULT NULL,
+                  `price` varchar(255) DEFAULT NULL,
+                  PRIMARY KEY (`f_id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+            <pma:table name="manegers_of_orders">
+                CREATE TABLE `manegers_of_orders` (
+                  `mn_id` int(11) NOT NULL,
+                  `mn_name` varchar(255) DEFAULT NULL,
+                  `salary` varchar(255) DEFAULT NULL,
+                  PRIMARY KEY (`mn_id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+            <pma:table name="material">
+                CREATE TABLE `material` (
+                  `m_id` int(11) NOT NULL,
+                  `name` varchar(255) DEFAULT NULL,
+                  `price_sq_M` varchar(255) DEFAULT NULL,
+                  `color` varchar(255) DEFAULT NULL,
+                  PRIMARY KEY (`m_id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+            <pma:table name="orders">
+                CREATE TABLE `orders` (
+                  `c_ids` int(11) NOT NULL,
+                  `ord_id` int(11) NOT NULL,
+                  `m_ids` int(11) NOT NULL,
+                  `f_ids` int(11) NOT NULL,
+                  `amout_m_sq` varchar(255) DEFAULT NULL,
+                  `size` varchar(255) DEFAULT NULL,
+                  `address` varchar(255) DEFAULT NULL,
+                  PRIMARY KEY (`ord_id`,`m_ids`,`f_ids`),
+                  KEY `no_of_m_id` (`m_ids`),
+                  KEY `no_f_ids` (`f_ids`),
+                  KEY `ordering` (`c_ids`),
+                  CONSTRAINT `no_f_ids` FOREIGN KEY (`f_ids`) REFERENCES `finish` (`f_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                  CONSTRAINT `no_of_m_id` FOREIGN KEY (`m_ids`) REFERENCES `material` (`m_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                  CONSTRAINT `ordering` FOREIGN KEY (`c_ids`) REFERENCES `clients` (`c_id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+            <pma:table name="task_order">
+                CREATE TABLE `task_order` (
+                  `c_ids` int(11) NOT NULL,
+                  `mn_ids` int(11) NOT NULL,
+                  `deadline` date DEFAULT NULL,
+                  PRIMARY KEY (`c_ids`,`mn_ids`),
+                  KEY `mn_ids` (`mn_ids`),
+                  CONSTRAINT `task_order_ibfk_1` FOREIGN KEY (`c_ids`) REFERENCES `clients` (`c_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                  CONSTRAINT `task_order_ibfk_2` FOREIGN KEY (`mn_ids`) REFERENCES `manegers_of_orders` (`mn_id`) ON DELETE CASCADE ON UPDATE CASCADE
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Database: 'company'
+    -->
+    <database name="company">
+        <!-- Table clients -->
+        <table name="clients">
+            <column name="c_id">1001</column>
+            <column name="c_name">mohmed ahmed</column>
+            <column name="email">mohmed32@gmail.com</column>
+        </table>
+        <table name="clients">
+            <column name="c_id">1002</column>
+            <column name="c_name">ahmed mohmed</column>
+            <column name="email">ahmed476@gmail.com</column>
+        </table>
+        <table name="clients">
+            <column name="c_id">1003</column>
+            <column name="c_name">mohamed hamdy</column>
+            <column name="email">mohamed25425@gmail.com</column>
+        </table>
+        <table name="clients">
+            <column name="c_id">1004</column>
+            <column name="c_name">emad </column>
+            <column name="email">emad@gmail.com</column>
+        </table>
+        <table name="clients">
+            <column name="c_id">1005</column>
+            <column name="c_name">mostafa </column>
+            <column name="email">mostafa@gmail.com</column>
+        </table>
+        <table name="clients">
+            <column name="c_id">1006</column>
+            <column name="c_name">mohamed khaled</column>
+            <column name="email">mohamed@gmail.com</column>
+        </table>
+        <table name="clients">
+            <column name="c_id">1007</column>
+            <column name="c_name">adel mohmed</column>
+            <column name="email">adel@gmail.com</column>
+        </table>
+        <table name="clients">
+            <column name="c_id">1008</column>
+            <column name="c_name">islam</column>
+            <column name="email">isalam@gmail.com</column>
+        </table>
+        <table name="clients">
+            <column name="c_id">1009</column>
+            <column name="c_name">ali</column>
+            <column name="email">ali@gmail.com</column>
+        </table>
+        <table name="clients">
+            <column name="c_id">1010</column>
+            <column name="c_name">omar ahmed</column>
+            <column name="email">omar424@yahoo.com</column>
+        </table>
+        <!-- Table employee -->
+        <table name="employee">
+            <column name="emp_id">301</column>
+            <column name="emp_name">baha</column>
+            <column name="salary">8000</column>
+            <column name="address">cairo</column>
+            <column name="email">baha534@gmail.com</column>
+            <column name="job">accountant</column>
+        </table>
+        <table name="employee">
+            <column name="emp_id">302</column>
+            <column name="emp_name">abed el khalek</column>
+            <column name="salary">7000</column>
+            <column name="address">alex</column>
+            <column name="email">abedelkhalek43@gmail.com</column>
+            <column name="job">sellar</column>
+        </table>
+        <table name="employee">
+            <column name="emp_id">303</column>
+            <column name="emp_name">abed el nasser</column>
+            <column name="salary">9000</column>
+            <column name="address">cairo</column>
+            <column name="email">abedelnasser32@gmail.com</column>
+            <column name="job">accountant</column>
+        </table>
+        <table name="employee">
+            <column name="emp_id">304</column>
+            <column name="emp_name">mahmoud el cadi</column>
+            <column name="salary">9000</column>
+            <column name="address">al behera</column>
+            <column name="email">mahmoud13@gmail.com</column>
+            <column name="job">accountant</column>
+        </table>
+        <table name="employee">
+            <column name="emp_id">305</column>
+            <column name="emp_name">mostafa</column>
+            <column name="salary">8000</column>
+            <column name="address">el monfia</column>
+            <column name="email">mostafa654@gmail.com</column>
+            <column name="job">engineer</column>
+        </table>
+        <table name="employee">
+            <column name="emp_id">306</column>
+            <column name="emp_name">fahmy</column>
+            <column name="salary">9000</column>
+            <column name="address">cairo</column>
+            <column name="email">fahmy@gmail.com</column>
+            <column name="job">accountant</column>
+        </table>
+        <table name="employee">
+            <column name="emp_id">307</column>
+            <column name="emp_name">mohamed khalf</column>
+            <column name="salary">6000</column>
+            <column name="address">cairo</column>
+            <column name="email">mohmed234@gmail.com</column>
+            <column name="job">data entry</column>
+        </table>
+        <!-- Table finish -->
+        <table name="finish">
+            <column name="f_id">401</column>
+            <column name="f_name">polish</column>
+            <column name="price">50</column>
+        </table>
+        <table name="finish">
+            <column name="f_id">402</column>
+            <column name="f_name">hond</column>
+            <column name="price">50</column>
+        </table>
+        <table name="finish">
+            <column name="f_id">403</column>
+            <column name="f_name">tambule</column>
+            <column name="price">40</column>
+        </table>
+        <table name="finish">
+            <column name="f_id">404</column>
+            <column name="f_name">brisheal</column>
+            <column name="price">25</column>
+        </table>
+        <table name="finish">
+            <column name="f_id">405</column>
+            <column name="f_name">bushemer</column>
+            <column name="price">35</column>
+        </table>
+        <table name="finish">
+            <column name="f_id">406</column>
+            <column name="f_name">acid</column>
+            <column name="price">25</column>
+        </table>
+        <table name="finish">
+            <column name="f_id">407</column>
+            <column name="f_name">sund plust</column>
+            <column name="price">25</column>
+        </table>
+        <!-- Table manegers_of_orders -->
+        <table name="manegers_of_orders">
+            <column name="mn_id">601</column>
+            <column name="mn_name">reda</column>
+            <column name="salary">4000</column>
+        </table>
+        <table name="manegers_of_orders">
+            <column name="mn_id">602</column>
+            <column name="mn_name">nasr</column>
+            <column name="salary">5000</column>
+        </table>
+        <table name="manegers_of_orders">
+            <column name="mn_id">603</column>
+            <column name="mn_name">ahmed nady</column>
+            <column name="salary">4000</column>
+        </table>
+        <table name="manegers_of_orders">
+            <column name="mn_id">604</column>
+            <column name="mn_name">sayed</column>
+            <column name="salary">5000</column>
+        </table>
+        <table name="manegers_of_orders">
+            <column name="mn_id">605</column>
+            <column name="mn_name">ahmed salah</column>
+            <column name="salary">4000</column>
+        </table>
+        <table name="manegers_of_orders">
+            <column name="mn_id">606</column>
+            <column name="mn_name">mohamed</column>
+            <column name="salary">5000</column>
+        </table>
+        <table name="manegers_of_orders">
+            <column name="mn_id">607</column>
+            <column name="mn_name">hassn</column>
+            <column name="salary">3000</column>
+        </table>
+        <table name="manegers_of_orders">
+            <column name="mn_id">608</column>
+            <column name="mn_name">mostfa hamed</column>
+            <column name="salary">5000</column>
+        </table>
+        <table name="manegers_of_orders">
+            <column name="mn_id">609</column>
+            <column name="mn_name">atef</column>
+            <column name="salary">3000</column>
+        </table>
+        <table name="manegers_of_orders">
+            <column name="mn_id">610</column>
+            <column name="mn_name">aazer</column>
+            <column name="salary">4000</column>
+        </table>
+        <!-- Table material -->
+        <table name="material">
+            <column name="m_id">201</column>
+            <column name="name">galala</column>
+            <column name="price_sq_M">9$</column>
+            <column name="color">white</column>
+        </table>
+        <table name="material">
+            <column name="m_id">202</column>
+            <column name="name">sany mnia</column>
+            <column name="price_sq_M">10$</column>
+            <column name="color">yellow</column>
+        </table>
+        <table name="material">
+            <column name="m_id">203</column>
+            <column name="name">savia mnia</column>
+            <column name="price_sq_M">10$</column>
+            <column name="color">yellow</column>
+        </table>
+        <table name="material">
+            <column name="m_id">204</column>
+            <column name="name">sani fadl</column>
+            <column name="price_sq_M">14$</column>
+            <column name="color">yellow</column>
+        </table>
+        <table name="material">
+            <column name="m_id">205</column>
+            <column name="name">trista</column>
+            <column name="price_sq_M">13$</column>
+            <column name="color">beige</column>
+        </table>
+        <table name="material">
+            <column name="m_id">206</column>
+            <column name="name">trista gray</column>
+            <column name="price_sq_M">14$</column>
+            <column name="color">gray</column>
+        </table>
+        <table name="material">
+            <column name="m_id">207</column>
+            <column name="name">maly brown</column>
+            <column name="price_sq_M">8$</column>
+            <column name="color">brown</column>
+        </table>
+        <table name="material">
+            <column name="m_id">208</column>
+            <column name="name">maly gray</column>
+            <column name="price_sq_M">9$</column>
+            <column name="color">gray</column>
+        </table>
+        <table name="material">
+            <column name="m_id">209</column>
+            <column name="name">zafarana</column>
+            <column name="price_sq_M">17$</column>
+            <column name="color">red</column>
+        </table>
+        <table name="material">
+            <column name="m_id">210</column>
+            <column name="name">new halib</column>
+            <column name="price_sq_M">16$</column>
+            <column name="color">blue</column>
+        </table>
+        <table name="material">
+            <column name="m_id">211</column>
+            <column name="name">halib</column>
+            <column name="price_sq_M">211</column>
+            <column name="color">light blue</column>
+        </table>
+        <!-- Table orders -->
+        <table name="orders">
+            <column name="c_ids">1001</column>
+            <column name="ord_id">5001</column>
+            <column name="m_ids">201</column>
+            <column name="f_ids">405</column>
+            <column name="amout_m_sq">500</column>
+            <column name="size">60*120</column>
+            <column name="address">USA</column>
+        </table>
+        <table name="orders">
+            <column name="c_ids">1009</column>
+            <column name="ord_id">5002</column>
+            <column name="m_ids">208</column>
+            <column name="f_ids">402</column>
+            <column name="amout_m_sq">700</column>
+            <column name="size">60*60</column>
+            <column name="address">shanghai port_china</column>
+        </table>
+        <table name="orders">
+            <column name="c_ids">1010</column>
+            <column name="ord_id">5003</column>
+            <column name="m_ids">209</column>
+            <column name="f_ids">403</column>
+            <column name="amout_m_sq">700</column>
+            <column name="size">40*60</column>
+            <column name="address">singapore</column>
+        </table>
+        <table name="orders">
+            <column name="c_ids">1001</column>
+            <column name="ord_id">5004</column>
+            <column name="m_ids">209</column>
+            <column name="f_ids">401</column>
+            <column name="amout_m_sq">600</column>
+            <column name="size">60*80</column>
+            <column name="address">USA</column>
+        </table>
+        <table name="orders">
+            <column name="c_ids">1007</column>
+            <column name="ord_id">5005</column>
+            <column name="m_ids">202</column>
+            <column name="f_ids">404</column>
+            <column name="amout_m_sq">650</column>
+            <column name="size">70*140</column>
+            <column name="address">roma</column>
+        </table>
+        <table name="orders">
+            <column name="c_ids">1002</column>
+            <column name="ord_id">5006</column>
+            <column name="m_ids">211</column>
+            <column name="f_ids">407</column>
+            <column name="amout_m_sq">800</column>
+            <column name="size">120*60</column>
+            <column name="address">alex</column>
+        </table>
+        <table name="orders">
+            <column name="c_ids">1003</column>
+            <column name="ord_id">5007</column>
+            <column name="m_ids">209</column>
+            <column name="f_ids">407</column>
+            <column name="amout_m_sq">900</column>
+            <column name="size">60*50</column>
+            <column name="address">el minia</column>
+        </table>
+        <table name="orders">
+            <column name="c_ids">1002</column>
+            <column name="ord_id">5008</column>
+            <column name="m_ids">205</column>
+            <column name="f_ids">403</column>
+            <column name="amout_m_sq">800</column>
+            <column name="size">60*70</column>
+            <column name="address">alex</column>
+        </table>
+        <table name="orders">
+            <column name="c_ids">1004</column>
+            <column name="ord_id">5009</column>
+            <column name="m_ids">207</column>
+            <column name="f_ids">401</column>
+            <column name="amout_m_sq">300</column>
+            <column name="size">60*60</column>
+            <column name="address">el soudia</column>
+        </table>
+        <table name="orders">
+            <column name="c_ids">1006</column>
+            <column name="ord_id">5010</column>
+            <column name="m_ids">206</column>
+            <column name="f_ids">402</column>
+            <column name="amout_m_sq">200</column>
+            <column name="size">40*60</column>
+            <column name="address">Egypt_cairo_el maadi</column>
+        </table>
+        <table name="orders">
+            <column name="c_ids">1008</column>
+            <column name="ord_id">5011</column>
+            <column name="m_ids">204</column>
+            <column name="f_ids">405</column>
+            <column name="amout_m_sq">1000</column>
+            <column name="size">60*50</column>
+            <column name="address">madred</column>
+        </table>
+        <table name="orders">
+            <column name="c_ids">1004</column>
+            <column name="ord_id">5012</column>
+            <column name="m_ids">203</column>
+            <column name="f_ids">407</column>
+            <column name="amout_m_sq">500</column>
+            <column name="size">70*80</column>
+            <column name="address">el soudia</column>
+        </table>
+        <table name="orders">
+            <column name="c_ids">1007</column>
+            <column name="ord_id">5013</column>
+            <column name="m_ids">210</column>
+            <column name="f_ids">406</column>
+            <column name="amout_m_sq">300</column>
+            <column name="size">40*60</column>
+            <column name="address">roma</column>
+        </table>
+        <!-- Table task_order -->
+        <table name="task_order">
+            <column name="c_ids">1001</column>
+            <column name="mn_ids">602</column>
+            <column name="deadline">2023-02-10</column>
+        </table>
+        <table name="task_order">
+            <column name="c_ids">1002</column>
+            <column name="mn_ids">601</column>
+            <column name="deadline">2023-03-10</column>
+        </table>
+        <table name="task_order">
+            <column name="c_ids">1003</column>
+            <column name="mn_ids">603</column>
+            <column name="deadline">2023-02-20</column>
+        </table>
+        <table name="task_order">
+            <column name="c_ids">1004</column>
+            <column name="mn_ids">604</column>
+            <column name="deadline">2023-03-15</column>
+        </table>
+        <table name="task_order">
+            <column name="c_ids">1004</column>
+            <column name="mn_ids">607</column>
+            <column name="deadline">2023-03-15</column>
+        </table>
+        <table name="task_order">
+            <column name="c_ids">1005</column>
+            <column name="mn_ids">605</column>
+            <column name="deadline">2023-03-20</column>
+        </table>
+        <table name="task_order">
+            <column name="c_ids">1006</column>
+            <column name="mn_ids">606</column>
+            <column name="deadline">2023-03-30</column>
+        </table>
+        <table name="task_order">
+            <column name="c_ids">1007</column>
+            <column name="mn_ids">607</column>
+            <column name="deadline">2023-03-25</column>
+        </table>
+        <table name="task_order">
+            <column name="c_ids">1008</column>
+            <column name="mn_ids">608</column>
+            <column name="deadline">2023-04-30</column>
+        </table>
+        <table name="task_order">
+            <column name="c_ids">1009</column>
+            <column name="mn_ids">609</column>
+            <column name="deadline">2023-04-30</column>
+        </table>
+        <table name="task_order">
+            <column name="c_ids">1010</column>
+            <column name="mn_ids">610</column>
+            <column name="deadline">2023-04-20</column>
+        </table>
+    </database>
+</pma_xml_export>
